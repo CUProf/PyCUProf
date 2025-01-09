@@ -1,4 +1,8 @@
-all:
+.PHONY: all install clean
+
+all: install
+
+install:
 	cd CUProf && ./bin/install && cd ..
 	python3 setup.py bdist
 	@echo ""
