@@ -1,4 +1,5 @@
 all:
+	cd CUProf && ./bin/install && cd ..
 	python3 setup.py bdist
 	@echo ""
 	@echo "The package has been built successfully."
@@ -6,3 +7,4 @@ all:
 	@echo "pip install ."
 clean:
 	rm -rf build dist *.egg-info
+	cd CUProf && ./bin/clean && cd ..
