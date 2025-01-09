@@ -4,7 +4,7 @@
 
 ```shell
 # 1. build
-make
+make cuprof && make
 # Or
 cd CUProf && ./bin/install && cd ..
 python setup.py bdist

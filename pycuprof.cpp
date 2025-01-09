@@ -23,7 +23,7 @@ void cuprof_stop() {
 PYBIND11_MODULE(pycuprof, m) {
     m.doc() = "Python interface of CUProf";
 
-    m.def("cuprof_init", &cuprof_init, "Initialize CUProf (must be called at the very beginning)");
-    m.def("cuprof_start", &cuprof_start, "Start CUProf (start profiling, must be called after cuprof_init)");
-    m.def("cuprof_stop", &cuprof_stop, "Stop CUProf (stop profiling, must be called after cuprof_start)");
+    m.def("init", &cuprof_init, "Initialize CUProf (must be called at the very beginning)");
+    m.def("start", &cuprof_start, "Start CUProf (start profiling, must be called after cuprof_init)");
+    m.def("stop", &cuprof_stop, "Stop CUProf (stop profiling, must be called after cuprof_start)");
 }
