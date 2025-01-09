@@ -1,0 +1,3 @@
+[submodule "CUProf"]
+	path = CUProf
+	url = git@github.com:Lin-Mao/CUProf.git
