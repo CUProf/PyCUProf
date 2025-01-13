@@ -1,6 +1,9 @@
 #include <pybind11/pybind11.h>
 #include "compute_sanitizer.h"
 
+#include <iostream>
+#include <cstdlib>
+
 static bool pycuprof_initialized = false;
 
 void cuprof_init() {
@@ -9,13 +12,15 @@ void cuprof_init() {
 }
 void cuprof_start() {
     if (!pycuprof_initialized) {
-        throw std::runtime_error("CUProf is not initialized. Please call cuprof_init first.");
+        std::cerr << "error: PyCUProf is not initialized. Please call pycuprof.init() first." << std::endl;
+        std::exit(1);
     }
     enable_compute_sanitizer(true);
 }
 void cuprof_stop() {
     if (!pycuprof_initialized) {
-        throw std::runtime_error("CUProf is not initialized. Please call cuprof_init first.");
+        std::cerr << "error: PyCUProf is not initialized. Please call pycuprof.init() first." << std::endl;
+        std::exit(1);
     }
     enable_compute_sanitizer(false);
 }
