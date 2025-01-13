@@ -12,14 +12,14 @@ void cuprof_init() {
 }
 void cuprof_start() {
     if (!pycuprof_initialized) {
-        std::cerr << "error: PyCUProf is not initialized. Please call pycuprof.init() first." << std::endl;
+        std::cerr << "error: PyCUProf is not initialized. Please call cuprof_init() first." << std::endl;
         std::exit(1);
     }
     enable_compute_sanitizer(true);
 }
 void cuprof_stop() {
     if (!pycuprof_initialized) {
-        std::cerr << "error: PyCUProf is not initialized. Please call pycuprof.init() first." << std::endl;
+        std::cerr << "error: PyCUProf is not initialized. Please call cuprof_init() first." << std::endl;
         std::exit(1);
     }
     enable_compute_sanitizer(false);
@@ -28,7 +28,10 @@ void cuprof_stop() {
 PYBIND11_MODULE(pycuprof, m) {
     m.doc() = "Python interface of CUProf";
 
-    m.def("init", &cuprof_init, "Initialize CUProf (must be called at the very beginning)");
-    m.def("start", &cuprof_start, "Start CUProf (start profiling, must be called after cuprof_init)");
-    m.def("stop", &cuprof_stop, "Stop CUProf (stop profiling, must be called after cuprof_start)");
+    // Call cuprof_init automatically during import
+    cuprof_init();
+
+    // m.def("init", &cuprof_init, "Initialize CUProf (must be called at the very beginning)");
+    m.def("start", &cuprof_start, "Start CUProf, start profiling");
+    m.def("stop", &cuprof_stop, "Stop CUProf, stop profiling");
 }
