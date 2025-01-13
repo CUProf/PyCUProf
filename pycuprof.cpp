@@ -15,6 +15,8 @@ void cuprof_start() {
         std::cerr << "error: PyCUProf is not initialized. Please call cuprof_init() first." << std::endl;
         std::exit(1);
     }
+    std::cout << "[PYCUPROF INFO] Start CUProf profiling" << std::endl;
+    std::cout.flush();
     enable_compute_sanitizer(true);
 }
 void cuprof_stop() {
@@ -22,6 +24,8 @@ void cuprof_stop() {
         std::cerr << "error: PyCUProf is not initialized. Please call cuprof_init() first." << std::endl;
         std::exit(1);
     }
+    std::cout << "[PYCUPROF INFO] Stop CUProf profiling" << std::endl;
+    std::cout.flush();
     enable_compute_sanitizer(false);
 }
 
